@@ -14,21 +14,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.coupons.model.Customer;
 import com.coupons.repository.CustomerRepository;
-import com.coupons.service.CustomerService;
+
 
 @RestController
+@RequestMapping
 public class CustomerController {
 	
 	@Autowired
 	public CustomerRepository customerRepository;
 	
-	@Autowired
-	public CustomerService customerService;
-	
 	@GetMapping(value = "/all")
 	public List<Customer> getAllStudents(){
 		return customerRepository.findAll();
 	}
+	
 	@GetMapping(value = "/name/{name}")
 	public Customer getCustomer(@PathVariable("name") String name) {
 		return customerRepository.findByName(name);
@@ -46,10 +45,14 @@ public class CustomerController {
 		customerRepository.deleteById(id);
 	}
 	
-	@PutMapping(value = "/customer")
-	public Customer update(@RequestBody Customer customer) {
+	@PutMapping(value = "/customer/{id}")
+	public Customer update(@RequestBody Customer customer, @PathVariable("id") long id, String email, String name) {
 		
-		customerService.saveOrUpdate(customer);
+		customer.setId(id);
+		customer.setEmail(email);
+		customer.setName(name);
+		customerRepository.save(customer);
+		
 		return customer;
 		
 	}

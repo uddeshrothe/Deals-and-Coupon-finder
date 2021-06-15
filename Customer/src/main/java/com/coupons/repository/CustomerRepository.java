@@ -9,4 +9,5 @@ import com.coupons.model.Customer;
 public interface CustomerRepository extends MongoRepository<Customer, Long> {
 
 	public Customer findByName(String name);
+	
 }
