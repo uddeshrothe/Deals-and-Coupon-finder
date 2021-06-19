@@ -20,10 +20,18 @@ public class Customer {
 		this.id = id;
 		this.name = name;
 		this.email = email;
+		this.password = password;
 	}
 	public Customer() {
 		super();
 		
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	public Long getId() {
 		return id;

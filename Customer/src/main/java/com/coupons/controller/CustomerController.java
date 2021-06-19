@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.coupons.model.Customer;
 import com.coupons.repository.CustomerRepository;
 
-
 @RestController
 @RequestMapping
 public class CustomerController {
@@ -46,14 +45,13 @@ public class CustomerController {
 	}
 	
 	@PutMapping(value = "/customer/{id}")
-	public Customer update(@RequestBody Customer customer, @PathVariable("id") long id, String email, String name) {
+	public Customer update(@RequestBody Customer newCustomer) {
+		Customer oldCustomer = customerRepository.findById(newCustomer.getId()).orElse(null);
+		oldCustomer.setEmail(newCustomer.getEmail());
+		oldCustomer.setPassword(newCustomer.getPassword());
+		oldCustomer.setName(newCustomer.getName());
 		
-		customer.setId(id);
-		customer.setEmail(email);
-		customer.setName(name);
-		customerRepository.save(customer);
-		
-		return customer;
+		return oldCustomer;
 		
 	}
 	
