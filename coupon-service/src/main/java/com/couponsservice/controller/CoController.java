@@ -13,7 +13,7 @@ import com.couponsservice.entities.Coupon;
 import com.couponsservice.repository.CouponRepository;
 import com.couponsservice.services.CouponService;
 
-@CrossOrigin(origins = "http://localhost:3000/")
+@CrossOrigin(origins = "http://localhost:8081/")
 @RestController
 @RequestMapping
 public class CoController {
