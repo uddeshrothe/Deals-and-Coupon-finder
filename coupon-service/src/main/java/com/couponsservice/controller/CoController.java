@@ -13,6 +13,8 @@ import com.couponsservice.entities.Coupon;
 import com.couponsservice.repository.CouponRepository;
 import com.couponsservice.services.CouponService;
 
+import io.swagger.annotations.ApiOperation;
+
 @CrossOrigin(origins = "http://localhost:8081/")
 @RestController
 @RequestMapping
@@ -25,6 +27,9 @@ public class CoController {
 	private CouponRepository couponRepository;
 	
 	@GetMapping("/getCoupon")
+	@ApiOperation(value="Get all coupons",
+			notes="Fetch all coupons from the database",
+			response=Coupon.class)
 	public ResponseEntity<?> getCoupon(){
 		List<Coupon> coupon =  couponRepository.findAll();
 		return new ResponseEntity<List<Coupon>>(coupon, HttpStatus.OK);
@@ -42,6 +47,9 @@ public class CoController {
 	
 	
 	@PostMapping("/saveCoupon")
+	@ApiOperation(value="Save coupon",
+	notes="Save coupons in the database",
+	response=Coupon.class)
 	public ResponseEntity<?> createCoupon(@RequestBody Coupon coupon) {
 		//return couponService.save(coupon);
 		try {

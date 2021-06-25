@@ -1,11 +1,16 @@
-package com.coupons;
+package com.products;
 
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Collections;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
+import org.xmlpull.v1.XmlPullParserException;
 
+import io.swagger.models.Model;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
@@ -14,6 +19,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
+@EnableDiscoveryClient
 @EnableSwagger2
 public class ProductsApplication {
 
@@ -27,7 +33,7 @@ public class ProductsApplication {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.select()
 				.paths(PathSelectors.ant("/*"))
-				.apis(RequestHandlerSelectors.basePackage("com.coupons"))
+				.apis(RequestHandlerSelectors.basePackage("com.products"))
 				.build()
 				.apiInfo(apiDetails());
 	}
@@ -35,7 +41,7 @@ public class ProductsApplication {
 	private ApiInfo apiDetails() {
 		return new ApiInfo(
 				"Products Service",
-				"API for Products",
+				"API for fetching Coupons",
 				"1.0",
 				"Free to use",
 				new springfox.documentation.service.Contact("Uddesh Rothe", "https://uddeshrothe.github.io/Resume/", "uddesh.rothe1@gmail.com"),

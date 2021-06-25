@@ -4,7 +4,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.coupons.model.Products;
 
-public interface ProductsRepository extends MongoRepository<Products, String> {
+public interface ProductsRepository extends MongoRepository<Products, Integer> {
 
 	Products findByProductName(String name);
 
