@@ -41,7 +41,7 @@ public class ProductsApplication {
 	private ApiInfo apiDetails() {
 		return new ApiInfo(
 				"Products Service",
-				"API for fetching Coupons",
+				"API for fetching Products",
 				"1.0",
 				"Free to use",
 				new springfox.documentation.service.Contact("Uddesh Rothe", "https://uddeshrothe.github.io/Resume/", "uddesh.rothe1@gmail.com"),
